@@ -1,0 +1,23 @@
+{
+  "name": "digipolis-codetabel-dropdown",
+  "version": "0.9.0",
+  "main": [
+    "dist/digipolis-codetabel-dropdown.js",
+    "dist/style.css"
+  ],
+  "ignore": [
+    ".*",
+    "**/.*",
+    "Gruntfile.js",
+    "package.json",
+    "src",
+    "test",
+    "*.sublime-project"
+  ],
+  "dependencies": {
+    "angular": "~1.3.12",
+    "tink-core": "latest",
+    "awelzijn-helper-http":"latest",
+    "awelzijn-notification-service": "latest"
+  }
+}
