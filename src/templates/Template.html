@@ -1,0 +1,8 @@
+<div>
+    <select ng-model="selectedkeyValue" class="form-control" ng-show="editMode" ng-change="OnChange()"  />
+		<option ng-if="formMode" disabled="disabled">Selecteer...</option>
+		<option ng-if="!formMode && emptyDescription" value="-1">{{emptyDescription}}</option>
+		<option ng-repeat="codetabelItem in codetabelItems" ng-disabled="codetabelItem.disabled" value="codetabelItem.id">{{codetabelItem.omschrijving}}</option> 
+	</select>
+	<div ng-if="valueLabel" ng-show="!editMode">{{valueLabel.trim() || "-"}}</div>
+</div>
