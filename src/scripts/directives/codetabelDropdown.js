@@ -42,19 +42,24 @@
             transclude: false,
             scope: {
                 editMode: '=',
+                formMode: '=',
+                emptyDescription: '=',
                 ngModel: '=',
                 valueLabel: '=',
                 ngChange: '&'
             },
-            template: '<div>' +
-                         '  <select ng-model="selectedkeyValue" class="form-control" ng-show="editMode" ng-change="OnChange()" ng-options="codetabelItem.omschrijving for codetabelItem in codetabelItems track by codetabelItem.id" /></select>' +
-						 '  <div ng-if="valueLabel" ng-show="!editMode">{{valueLabel.trim() || "-"}}</div>' +
-				      '</div>',
+            templateUrl: 'templates/Template.html',
             link: function (scope, element, attrs) {
 
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
 
                     if (newValue !== oldValue) {
+                        if (newValue === -1) {
+                            //Nothing selected
+                            newValue.id = nil;
+                            newValue.omschrijving = scope.emptyDescription;
+                        }
+                        
                         scope.ngModel = newValue.id;
                         scope.valueLabel = newValue.omschrijving;
                     }
