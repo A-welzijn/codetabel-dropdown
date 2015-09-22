@@ -6,7 +6,36 @@
         module = angular.module('digipolis.codetabeldropdown', ['digipolis.codetabeldropdown']);
     }
 
-module.directive('digipolisCodetabelDropdown', ['digipolisCodetabelService', '$timeout', function (codetabelService, $timeout) {
+    module.factory('digipolisCodetabelService', ['AppService', 'awelzijnHelperHttp', 'AppConfig', function (appService, helper, appConfig) {
+
+        function _get(codeTabelApiRoute) {
+            var options = {
+                authenticate: true,
+                transform: function (response) {
+                    var elements = [];
+
+                    for (var key in response) {
+                        if (key.indexOf('listOf', 0) === 0) {
+                            elements = response[key];
+                            break;
+                        }
+                    }
+
+                    return elements;
+                }
+            };
+
+            return helper.get(appConfig.apiRoot + codeTabelApiRoute + '/', options);
+        }
+
+        appService.logger.creation('digipolisCodetabelService');
+
+        return {
+            get: _get
+        };
+    }]);
+
+    module.directive('digipolisCodetabelDropdown', ['digipolisCodetabelService', '$timeout', function (codetabelService, $timeout) {
         return {
             restrict: 'E',
             replace: true,
