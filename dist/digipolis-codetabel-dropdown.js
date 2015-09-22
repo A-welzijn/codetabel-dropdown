@@ -43,25 +43,32 @@
             scope: {
                 editMode: '=',
                 formMode: '=',
-                emptyDescription: '=',
+                emptyDescription: '@',
                 ngModel: '=',
                 valueLabel: '=',
                 ngChange: '&'
             },
-            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show=editMode ng-change=\"OnChange()\"> <option ng-if=formMode disabled>Selecteer...</option> <option ng-if=\"!formMode && emptyDescription\" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled=codetabelItem.disabled value=codetabelItem.id>{{codetabelItem.omschrijving}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
+            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show=editMode ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled>Selecteer...</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem.id}}>{{codetabelItem.omschrijving}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
             link: function (scope, element, attrs) {
 
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
 
                     if (newValue !== oldValue) {
-                        if (newValue === -1) {
-                            //Nothing selected
-                            newValue.id = nil;
-                            newValue.omschrijving = scope.emptyDescription;
+                        if (!newValue) {
+                            $scope.ngModel = -1;
+                            $scope.valueLabel = undefined;
+                            return;
                         }
-                        
-                        scope.ngModel = newValue.id;
-                        scope.valueLabel = newValue.omschrijving;
+
+                        if (newValue === "-1") {
+                            //Nothing selected
+                            $scope.ngModel = -1;
+                            $scope.valueLabel = $scope.emptyDescription;
+                            return;
+                        }
+
+                        $scope.ngModel = newValue.id;
+                        $scope.valueLabel = newValue.omschrijving;
                     }
                 }, true);
 
@@ -80,7 +87,7 @@
 
                 codetabelService.get(attrs.codetablename).then(function (response) {
                     scope.codetabelItems = response;
-                    scope.selectedkeyValue = null;
+                    $scope.selectedkeyValue = "-1";
                     scope.valueLabel = '';
                     
                     updateModel();
@@ -102,4 +109,4 @@
         };
     }]);
  
-})();;
+})();;;
