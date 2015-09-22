@@ -55,20 +55,20 @@
 
                     if (newValue !== oldValue) {
                         if (!newValue) {
-                            $scope.ngModel = -1;
-                            $scope.valueLabel = undefined;
+                            scope.ngModel = -1;
+                            scope.valueLabel = undefined;
                             return;
                         }
 
                         if (newValue === "-1") {
                             //Nothing selected
-                            $scope.ngModel = -1;
-                            $scope.valueLabel = $scope.emptyDescription;
+                            scope.ngModel = -1;
+                            scope.valueLabel = scope.emptyDescription;
                             return;
                         }
 
-                        $scope.ngModel = newValue.id;
-                        $scope.valueLabel = newValue.omschrijving;
+                        scope.ngModel = newValue.id;
+                        scope.valueLabel = newValue.omschrijving;
                     }
                 }, true);
 
@@ -87,7 +87,7 @@
 
                 codetabelService.get(attrs.codetablename).then(function (response) {
                     scope.codetabelItems = response;
-                    $scope.selectedkeyValue = "-1";
+                    scope.selectedkeyValue = "-1";
                     scope.valueLabel = '';
                     
                     updateModel();
