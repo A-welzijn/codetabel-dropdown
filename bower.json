@@ -1,6 +1,6 @@
 {
   "name": "digipolis-codetabel-dropdown",
-  "version": "0.11.0",
+  "version": "1.0.0",
   "main": [
     "dist/digipolis-codetabel-dropdown.js",
     "dist/style.css"
