@@ -54,7 +54,7 @@
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
 
                     if (newValue !== oldValue) {
-                        if (!newValue) {
+                        /*if (!newValue) {
                             scope.ngModel = -1;
                             scope.valueLabel = undefined;
                             return;
@@ -65,10 +65,14 @@
                             scope.ngModel = -1;
                             scope.valueLabel = scope.emptyDescription;
                             return;
-                        }
+                        }*/
 
-                        scope.ngModel = newValue.id;
-                        scope.valueLabel = newValue.omschrijving;
+                         angular.forEach(scope.codetabelItems, function(item) {
+                           if (item.id === newValue) {
+                               scope.ngModel = newValue.id;
+                               scope.valueLabel = newValue.omschrijving;
+                           }
+                        });
                     }
                 }, true);
 
