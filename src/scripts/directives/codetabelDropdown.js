@@ -54,7 +54,7 @@
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
 
                     if (newValue !== oldValue) {
-                        
+
                         if (newValue === "-1") {
                             //Nothing selected
                             scope.ngModel = -1;
@@ -62,11 +62,11 @@
                             return;
                         }
 
-                        angular.forEach(scope.codetabelItems, function(item) {
-                           if (item.id == newValue) {
-                               scope.ngModel = item.id;
-                               scope.valueLabel = item.omschrijving;
-                           }
+                        angular.forEach(scope.codetabelItems, function (item) {
+                            if (item.id == newValue) {
+                                scope.ngModel = item.id;
+                                scope.valueLabel = item.omschrijving;
+                            }
                         });
                     }
                 }, true);
@@ -88,16 +88,16 @@
                     scope.codetabelItems = response;
                     scope.selectedkeyValue = "-1";
                     scope.valueLabel = '';
-                    
+
                     updateModel();
                 });
 
                 function updateModel() {
                     if (scope.ngModel > 0) {
-                        
+
                         angular.forEach(scope.codetabelItems, function (keyValue) {
                             if (keyValue.id === scope.ngModel) {
-                                scope.selectedkeyValue = keyValue;
+                                scope.selectedkeyValue = String(keyValue.id);
                                 scope.valueLabel = keyValue.omschrijving;
                             }
                         });
@@ -107,5 +107,5 @@
             }
         };
     }]);
- 
-})();;
+
+})();;;
