@@ -85,7 +85,12 @@
                 };
 
                 codetabelService.get(attrs.codetablename).then(function (response) {
-                    scope.codetabelItems = response;
+                    scope.codetabelItems = [];
+                    angular.forEach(response, function(codetabel) {
+                        if (!codetabel.disabled) {
+                            scope.codetabelItems.push(codetabel);
+                        }
+                    });
                     scope.selectedkeyValue = "-1";
                     scope.valueLabel = '';
 
