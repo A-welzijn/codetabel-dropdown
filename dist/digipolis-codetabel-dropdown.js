@@ -48,7 +48,7 @@
                 valueLabel: '=',
                 ngChange: '&'
             },
-            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show=editMode ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled>Selecteer...</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem.id}}>{{codetabelItem.omschrijving}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
+            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show=editMode ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled>Selecteer...</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem}}>{{codetabelItem.omschrijving}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
             link: function (scope, element, attrs) {
 
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
