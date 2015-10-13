@@ -58,7 +58,7 @@
 
                         if (newValue === "-1") {
                             //Nothing selected
-                            scope.ngModel = -1;
+                            scope.ngModel = undefined;
                             scope.valueLabel = scope.emptyDescription;
                             return;
                         }
