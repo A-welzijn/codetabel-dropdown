@@ -1,6 +1,6 @@
 # codetabel-dropdown
 
-v1.1.2
+v1.1.3
 
 ### Hoe het te gebruiken
 

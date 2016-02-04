@@ -49,7 +49,7 @@
                 valueLabel: '=',
                 ngChange: '&'
             },
-            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show="editMode || formMode" ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled value="-1">{{formDescription || "Selecteer..."}}</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem.id}}>{{codetabelItem.waarde}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
+            template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show="editMode || formMode" ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled value="-1">{{formDescription || "Selecteer..."}}</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem.id}}>{{codetabelItem.value}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
             link: function (scope, element, attrs) {
 
                 scope.$watch('selectedkeyValue', function (newValue, oldValue) {
@@ -66,7 +66,7 @@
                         angular.forEach(scope.codetabelItems, function (item) {
                             if (item.id == newValue) {
                                 scope.ngModel = item.id;
-                                scope.valueLabel = item.waarde;
+                                scope.valueLabel = item.value;
                             }
                         });
                     }
@@ -104,7 +104,7 @@
                         angular.forEach(scope.codetabelItems, function (keyValue) {
                             if (keyValue.id === scope.ngModel) {
                                 scope.selectedkeyValue = String(keyValue.id);
-                                scope.valueLabel = keyValue.waarde;
+                                scope.valueLabel = keyValue.value;
                             }
                         });
                     }
