@@ -42,11 +42,11 @@
             transclude: false,
             scope: {
                 editMode: '=',
-                formMode: '=',
+                formMode: '=?',
                 emptyDescription: '@',
                 formDescription: '@', 
                 ngModel: '=',
-                valueLabel: '=',
+                valueLabel: '=?',
                 ngChange: '&'
             },
             template: '<div> <select ng-model=selectedkeyValue class=form-control ng-show="editMode || formMode" ng-change=\"OnChange()\"> <option ng-if=formMode selected="selected" disabled value="-1">{{formDescription || "Selecteer..."}}</option> <option ng-if=\"!formMode && emptyDescription\" selected="selected" value=-1>{{emptyDescription}}</option> <option ng-repeat=\"codetabelItem in codetabelItems\" ng-disabled={{codetabelItem.disabled}} value={{codetabelItem.id}}>{{codetabelItem.value}}</option>  <div ng-if=valueLabel ng-show=!editMode>{{valueLabel.trim() || \"-\"}}</div> </div>',
